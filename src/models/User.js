@@ -27,14 +27,7 @@ const userSchema = new mongoose.Schema({
   role: { 
     type: String, default: 'user' 
 }
-});
-
-
-userSchema.pre('save', function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = bcrypt.hashSync(this.password, 10);
-  next();
-});
+},{timestamps:true});
 
 const User = mongoose.model('User', userSchema);
 export default User;

@@ -1,14 +1,13 @@
-import express from 'express';
-import { loginUser, registerUser, currentUser } from '../controllers/authController.js';
-import passport from 'passport';
+import { Router } from 'express';
+import { loginUser, currentUser } from '../controllers/authController.js';
 
-const router = express.Router();
+const router = Router();
 
+//  iniciar sesión
 router.post('/login', loginUser);
 
-router.post('/register', registerUser);
+// obtener el usuario actual
+router.get('/current', currentUser);
 
-// Ruta para obtener el usuario actual
-router.get('/current', passport.authenticate('jwt', { session: false }), currentUser);
 
 export default router;
